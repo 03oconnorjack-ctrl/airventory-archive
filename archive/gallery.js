@@ -5,7 +5,7 @@
   document.title=man.brand+' archive '+man.years[0]+' to '+man.years[man.years.length-1];
   const years=document.getElementById('years'); years.innerHTML='<button class="on" data-y="all">All</button>'+man.years.map(y=>'<button data-y="'+y+'">'+y+'</button>').join('');
   const grid=document.getElementById('grid'); let items=man.items; let cur=[];
-  function render(list){cur=list; grid.innerHTML=''; list.forEach((it,i)=>{const a=document.createElement('a'); a.href='#'; a.className='cell'; a.dataset.i=i; a.innerHTML='<img loading="lazy" src="/archive/'+slug+'/thumb/'+it.src+'" width="'+it.w+'" height="'+it.h+'" alt=""><span>'+it.year+'</span>'; grid.appendChild(a);});}
+  function render(list){cur=list; grid.innerHTML=''; list.forEach((it,i)=>{const a=document.createElement('a'); a.href='#'; a.className='cell'; a.dataset.i=i; a.innerHTML='<img loading="lazy" src="thumb/'+it.src+'" width="'+it.w+'" height="'+it.h+'" alt=""><span>'+it.year+'</span>'; grid.appendChild(a);});}
   render(items);
   years.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; [...years.children].forEach(x=>x.classList.remove('on')); b.classList.add('on'); render(b.dataset.y==='all'?items:items.filter(x=>String(x.year)===b.dataset.y));});
   const lb=document.getElementById('lightbox'), lbimg=lb.querySelector('img'), cap=lb.querySelector('.cap'); let idx=-1;
